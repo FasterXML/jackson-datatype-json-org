@@ -52,13 +52,15 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.7.2</version>
+      <version>1.7.4</version>
     </dependency>
+    <!-- And support org.json/java types -->
     <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-mrbean</artifactId>
-      <version>1.7.2</version>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20090211</version>
     </dependency>
+
      <!-- and for testing, JUnit (or TestNG?) is needed -->
     <dependency>
       <groupId>junit</groupId>
@@ -131,6 +133,12 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
               <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
               <Bundle-Vendor>fasterml.com</Bundle-Vendor>
               <Import-Package>
+org.codehaus.jackson,
+org.codehaus.jackson.map,
+org.codehaus.jackson.map.module,
+org.codehaus.jackson.map.ser,
+org.codehaus.jackson.node,
+org.json           
 </Import-Package>
               <Private-Package>
 </Private-Package>
