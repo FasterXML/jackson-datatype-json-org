@@ -8,7 +8,7 @@
   <groupId>com.fasterxml</groupId>
   <artifactId>jackson-module-json-org</artifactId>
   <name>Jackson-module-json-org</name>
-  <version>0.9.1</version>
+  <version>0.9.2-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <description>Support for datatypes of "org.json" JSON library (see http://json.org/java),
 mainly to make it easier to upgrade code to Jackson, using automated conversions.
