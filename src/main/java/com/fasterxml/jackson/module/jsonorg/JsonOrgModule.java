@@ -3,6 +3,9 @@ package com.fasterxml.jackson.module.jsonorg;
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class JsonOrgModule extends SimpleModule
 {
     private final static String NAME = "JsonOrgModule";
@@ -19,7 +22,9 @@ public class JsonOrgModule extends SimpleModule
     public JsonOrgModule()
     {
         super(NAME, VERSION);
-        addSerializer(new JSONArraySerializer());
-        addSerializer(new JSONObjectSerializer());
+        addDeserializer(JSONArray.class, JSONArrayDeserializer.instance);
+        addDeserializer(JSONObject.class, JSONObjectDeserializer.instance);
+        addSerializer(JSONArraySerializer.instance);
+        addSerializer(JSONObjectSerializer.instance);
     }
 }
