@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.module.jsonorg;
 
 import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.*;
 import org.codehaus.jackson.map.module.SimpleModule;
 
 public class JsonOrgModule extends SimpleModule
@@ -20,6 +19,7 @@ public class JsonOrgModule extends SimpleModule
     public JsonOrgModule()
     {
         super(NAME, VERSION);
-        addSerializer(null);
+        addSerializer(new JSONArraySerializer());
+        addSerializer(new JSONObjectSerializer());
     }
 }

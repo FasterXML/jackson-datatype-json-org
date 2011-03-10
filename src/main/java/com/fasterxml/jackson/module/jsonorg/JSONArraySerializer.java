@@ -10,9 +10,8 @@ import org.codehaus.jackson.*;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.SerializerProvider;
 import org.codehaus.jackson.map.TypeSerializer;
-import org.codehaus.jackson.map.ser.SerializerBase;
 
-public class JSONArraySerializer extends SerializerBase<JSONArray>
+public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
 {
     public final static JSONArraySerializer instance = new JSONArraySerializer();
 
@@ -25,9 +24,9 @@ public class JSONArraySerializer extends SerializerBase<JSONArray>
     public void serialize(JSONArray value, JsonGenerator jgen, SerializerProvider provider)
         throws IOException, JsonGenerationException
     {
-        jgen.writeStartObject();
+        jgen.writeStartArray();
         serializeContents(value, jgen, provider);
-        jgen.writeEndObject();
+        jgen.writeEndArray();
     }
 
     @Override
@@ -54,19 +53,31 @@ public class JSONArraySerializer extends SerializerBase<JSONArray>
             Object ob = value.opt(i);
             if (ob == null || ob == JSONObject.NULL) {
                 jgen.writeNull();
+                continue;
+            }
+            Class<?> cls = ob.getClass();
+            if (cls == JSONObject.class) {
+                JSONObjectSerializer.instance.serialize((JSONObject) ob, jgen, provider);
+            } else if (cls == JSONArray.class) {
+                serialize((JSONArray) ob, jgen, provider);
+            } else  if (cls == String.class) {
+                jgen.writeString((String) ob);
+            } else  if (cls == Integer.class) {
+                jgen.writeNumber(((Integer) ob).intValue());
+            } else  if (cls == Long.class) {
+                jgen.writeNumber(((Long) ob).longValue());
+            } else  if (cls == Boolean.class) {
+                jgen.writeBoolean(((Boolean) ob).booleanValue());
+            } else  if (cls == Double.class) {
+                jgen.writeNumber(((Double) ob).doubleValue());
+            } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
+                JSONObjectSerializer.instance.serialize((JSONObject) ob, jgen, provider);
+            } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
+                serialize((JSONArray) ob, jgen, provider);
+            } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
+                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
             } else {
-                Class<?> cls = ob.getClass();
-                if (cls == JSONObject.class) {
-                    JSONObjectSerializer.instance.serialize((JSONObject) ob, jgen, provider);
-                } else if (cls == JSONArray.class) {
-                    serialize((JSONArray) ob, jgen, provider);
-                } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
-                    JSONObjectSerializer.instance.serialize((JSONObject) ob, jgen, provider);
-                } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
-                    serialize((JSONArray) ob, jgen, provider);
-                } else {
-                    provider.defaultSerializeValue(ob, jgen);
-                }
+                provider.defaultSerializeValue(ob, jgen);
             }
         }        
     }

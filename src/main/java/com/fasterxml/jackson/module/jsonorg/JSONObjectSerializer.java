@@ -6,13 +6,12 @@ import java.util.Iterator;
 
 import org.codehaus.jackson.*;
 import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.map.ser.SerializerBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class JSONObjectSerializer extends SerializerBase<JSONObject>
+public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
 {
     public final static JSONObjectSerializer instance = new JSONObjectSerializer();
 
@@ -63,20 +62,32 @@ public class JSONObjectSerializer extends SerializerBase<JSONObject>
                 if (provider.isEnabled(SerializationConfig.Feature.WRITE_NULL_MAP_VALUES)) {
                     jgen.writeNullField(key);
                 }
+                continue;
+            }
+            jgen.writeFieldName(key);
+            Class<?> cls = ob.getClass();
+            if (cls == JSONObject.class) {
+                serialize((JSONObject) ob, jgen, provider);
+            } else if (cls == JSONArray.class) {
+                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
+            } else  if (cls == String.class) {
+                jgen.writeString((String) ob);
+            } else  if (cls == Integer.class) {
+                jgen.writeNumber(((Integer) ob).intValue());
+            } else  if (cls == Long.class) {
+                jgen.writeNumber(((Long) ob).longValue());
+            } else  if (cls == Boolean.class) {
+                jgen.writeBoolean(((Boolean) ob).booleanValue());
+            } else  if (cls == Double.class) {
+                jgen.writeNumber(((Double) ob).doubleValue());
+            } else if (cls == JSONArray.class) {
+                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
+            } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
+                serialize((JSONObject) ob, jgen, provider);
+            } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
+                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
             } else {
-                Class<?> cls = ob.getClass();
-                jgen.writeFieldName(key);
-                if (cls == JSONObject.class) {
-                    serialize((JSONObject) ob, jgen, provider);
-                } else if (cls == JSONArray.class) {
-                    JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
-                } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
-                    serialize((JSONObject) ob, jgen, provider);
-                } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
-                    JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
-                } else {
-                    provider.defaultSerializeValue(ob, jgen);
-                }
+                provider.defaultSerializeValue(ob, jgen);
             }
         }
     }
