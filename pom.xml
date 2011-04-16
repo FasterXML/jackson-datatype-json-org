@@ -180,21 +180,6 @@ com.fasterxml.jackson.module.jsonorg
             </build>
         </profile>
   </profiles>
-  <repositories>
-    <repository>
-       <id>scala-tools.org</id>
-       <name>Scala-tools Maven2 Repository</name>
-       <url>http://scala-tools.org/repo-releases</url>
-     </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-  	<id>scala-tools.org</id>
-  	<name>Scala-tools Maven2 Repository</name>
-  	<url>http://scala-tools.org/repo-releases</url>
-    </pluginRepository>
-  </pluginRepositories>
-
   <!-- NOTE: repositories from parent POM -->
 
 </project>
