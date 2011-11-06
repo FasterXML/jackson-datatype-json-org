@@ -130,7 +130,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
           <extensions>true</extensions>
           <configuration>
             <instructions>
-              <Bundle-SymbolicName>${pom.artifactId}</Bundle-SymbolicName>
+              <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
               <Bundle-Vendor>fasterml.com</Bundle-Vendor>
               <Import-Package>
 org.codehaus.jackson,
