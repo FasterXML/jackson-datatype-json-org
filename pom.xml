@@ -151,7 +151,7 @@ org.json
               <Private-Package>
 </Private-Package>
               <Export-Package>
-com.fasterxml.jackson.module.jsonorg
+com.fasterxml.jackson.datatype.jsonorg
 </Export-Package>
             </instructions>
           </configuration>
