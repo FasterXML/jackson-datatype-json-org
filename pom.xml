@@ -8,7 +8,7 @@
   <groupId>com.fasterxml.jackson</groupId>
   <artifactId>jackson-datatype-json-org</artifactId>
   <name>Jackson-datatype-json.org</name>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>1.8.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <description>Support for datatypes of "org.json" JSON library (see http://json.org/java),
 mainly to make it easier to upgrade code to Jackson, using automated conversions.
@@ -48,7 +48,11 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
   </organization>
 
   <dependencies>
-    <!-- Extends Jackson mapper; works with 1.7 or above... -->
+    <!-- Extends Jackson mapper; tested to work with 1.8 or above
+        (may work with 1.7.x as well), hence minimum requirement here
+        NOTE: tested with 1.9 as well; major version only upgraded
+        if backwards/forwards-compatibility broken
+      -->
     <dependency>
       <groupId>org.codehaus.jackson</groupId>
       <artifactId>jackson-mapper-asl</artifactId>
