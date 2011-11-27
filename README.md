@@ -24,6 +24,8 @@ To use module on Maven-based projects, use following dependency:
 
 To use the the Module in Jackson, simply register it with the ObjectMapper instance:
 
+    // import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
+
     ObjectMapper mapper = new ObjectMapper();
     mapper.registerModule(new JsonOrgModule());
 
@@ -47,4 +49,3 @@ or to/from Tree Model:
     jsonObject = mapper.treeToValue(root, JSONObject.class);
 
 Similarly, you can read/write/convert-to/convert-from `JSONArray` instead of `JSONObject`.
-
