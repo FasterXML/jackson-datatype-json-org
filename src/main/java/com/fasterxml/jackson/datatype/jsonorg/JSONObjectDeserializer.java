@@ -1,4 +1,4 @@
-package com.fasterxml.jackson.module.jsonorg;
+package com.fasterxml.jackson.datatype.jsonorg;
 
 import java.io.IOException;
 

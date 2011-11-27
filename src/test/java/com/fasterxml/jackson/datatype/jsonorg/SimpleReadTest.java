@@ -1,7 +1,9 @@
-package com.fasterxml.jackson.module.jsonorg;
+package com.fasterxml.jackson.datatype.jsonorg;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.*;
+
+import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
 public class SimpleReadTest extends TestBase
 {
