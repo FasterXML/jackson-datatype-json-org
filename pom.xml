@@ -152,10 +152,14 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
               <Bundle-Vendor>fasterml.com</Bundle-Vendor>
               <Import-Package>
 com.fasterxml.jackson.core,
+com.fasterxml.jackson.core.util,
 com.fasterxml.jackson.databind,
 com.fasterxml.jackson.databind.deser,
+com.fasterxml.jackson.databind.deser.std,
+com.fasterxml.jackson.databind.jsontype,
 com.fasterxml.jackson.databind.module,
 com.fasterxml.jackson.databind.ser,
+com.fasterxml.jackson.databind.ser.std,
 com.fasterxml.jackson.databind.node,
 org.json           
 </Import-Package>
