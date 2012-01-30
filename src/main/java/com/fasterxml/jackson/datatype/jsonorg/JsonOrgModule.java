@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.module.SimpleModule;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,9 +8,6 @@ import org.json.JSONObject;
 public class JsonOrgModule extends SimpleModule
 {
     private final static String NAME = "JsonOrgModule";
-    
-    // Should externalize this somehow
-    private final static Version VERSION = new Version(0, 9, 0, null);
     
     /*
     /**********************************************************
@@ -21,7 +17,7 @@ public class JsonOrgModule extends SimpleModule
     
     public JsonOrgModule()
     {
-        super(NAME, VERSION);
+        super(NAME, ModuleVersion.instance.version());
         addDeserializer(JSONArray.class, JSONArrayDeserializer.instance);
         addDeserializer(JSONObject.class, JSONObjectDeserializer.instance);
         addSerializer(JSONArraySerializer.instance);

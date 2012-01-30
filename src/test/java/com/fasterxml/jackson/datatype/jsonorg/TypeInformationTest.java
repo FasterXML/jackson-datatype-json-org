@@ -1,6 +1,6 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import com.fasterxml.jackson.databind.*;
 
 import org.json.*;
 

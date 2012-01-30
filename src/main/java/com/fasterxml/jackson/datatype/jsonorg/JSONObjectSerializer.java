@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Iterator;
 
-import org.codehaus.jackson.*;
-import org.codehaus.jackson.map.*;
+import com.fasterxml.jackson.core.*;
+
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
 import org.json.JSONArray;
 import org.json.JSONException;

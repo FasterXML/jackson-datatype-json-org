@@ -6,10 +6,10 @@ import java.lang.reflect.Type;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import org.codehaus.jackson.*;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.SerializerProvider;
-import org.codehaus.jackson.map.TypeSerializer;
+import com.fasterxml.jackson.core.*;
+
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
 public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
 {

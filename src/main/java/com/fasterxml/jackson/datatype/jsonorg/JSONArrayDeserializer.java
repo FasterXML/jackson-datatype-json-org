@@ -2,9 +2,11 @@ package com.fasterxml.jackson.datatype.jsonorg;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.*;
-import org.codehaus.jackson.map.*;
-import org.codehaus.jackson.map.deser.StdDeserializer;
+import com.fasterxml.jackson.core.*;
+
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 

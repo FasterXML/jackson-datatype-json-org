@@ -1,8 +1,8 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
-import org.codehaus.jackson.map.ser.SerializerBase;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 
-abstract class JSONBaseSerializer<T> extends SerializerBase<T>
+abstract class JSONBaseSerializer<T> extends StdSerializer<T>
 {
     protected JSONBaseSerializer(Class<T> cls) { super(cls); }
 }
