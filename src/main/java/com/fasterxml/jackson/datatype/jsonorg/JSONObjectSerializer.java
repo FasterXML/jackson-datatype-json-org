@@ -61,7 +61,7 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
                 throw new JsonGenerationException(e);
             }
             if (ob == null || ob == JSONObject.NULL) {
-                if (provider.isEnabled(SerializationConfig.Feature.WRITE_NULL_MAP_VALUES)) {
+                if (provider.isEnabled(SerializationFeature.WRITE_NULL_MAP_VALUES)) {
                     jgen.writeNullField(key);
                 }
                 continue;
