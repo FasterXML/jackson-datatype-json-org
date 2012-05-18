@@ -1,11 +1,15 @@
-Version: 2.0.0
+Version: 2.0.2
 
 Release date:
-  25-Mar-2012
+  18-May-2012
 
 Description:
-  The official 2.0 release.
+  A patch release for 2.0 -- no changes, updating core deps to 2.0.2.
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
+
+2.0.0 (25-Mar-2012)
+
+Official 2.0 compatible version
