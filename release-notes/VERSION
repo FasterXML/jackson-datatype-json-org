@@ -1,14 +1,18 @@
-Version: 2.0.2
+Version: 2.1.0
 
 Release date:
-  18-May-2012
+  08-Oct-2012
 
 Description:
-  A patch release for 2.0 -- no changes, updating core deps to 2.0.2.
+  New minor release, no functional changes, just depends on core Jackson 2.1
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
+
+2.0.2 (18-May-2012)
+
+No changes
 
 2.0.0 (25-Mar-2012)
 
