@@ -1,14 +1,14 @@
-Version: 2.1.0
+Version: 2.1.1 (13-Nov-2012)
 
-Release date:
-  08-Oct-2012
-
-Description:
-  New minor release, no functional changes, just depends on core Jackson 2.1
+No functional changes.
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
+
+2.1.0 (08-Oct-2012)
+
+New minor release, no functional changes, just depends on core Jackson 2.1
 
 2.0.2 (18-May-2012)
 
