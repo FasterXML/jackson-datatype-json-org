@@ -1,4 +1,4 @@
-Project to build Jackson (http://jackson.codehaus.org) extension module (jar) to support datatypes of "json org" JSON library (see [http://org.json/java])
+Project to build Jackson (http://jackson.codehaus.org) extension module (jar) to support datatypes of "json org" JSON library (see [http://json.org/java])
 
 ## Status
 
