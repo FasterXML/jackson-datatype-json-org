@@ -12,6 +12,8 @@ import org.json.JSONObject;
 
 public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
 {
+    private static final long serialVersionUID = 1L;
+
     public final static JSONObjectDeserializer instance = new JSONObjectDeserializer();
 
     public JSONObjectDeserializer()
@@ -60,6 +62,7 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
                 case VALUE_EMBEDDED_OBJECT:
                     ob.put(fieldName, jp.getEmbeddedObject());
                     continue;
+                default:
                 }
             } catch (JSONException e) {
                 throw ctxt.mappingException("Failed to construct JSONObject: "+e.getMessage());

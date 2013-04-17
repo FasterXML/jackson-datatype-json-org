@@ -12,6 +12,8 @@ import org.json.JSONObject;
 
 public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
 {
+    private static final long serialVersionUID = 1L;
+
     public final static JSONArrayDeserializer instance = new JSONArrayDeserializer();
 
     public JSONArrayDeserializer()
@@ -54,8 +56,9 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
             case VALUE_EMBEDDED_OBJECT:
                 array.put(jp.getEmbeddedObject());
                 continue;
+            default:
+                throw ctxt.mappingException("Unrecognized or unsupported JsonToken type: "+t);
             }
-            throw ctxt.mappingException("Urecognized or unsupported JsonToken type: "+t);
         }
         return array;
     }

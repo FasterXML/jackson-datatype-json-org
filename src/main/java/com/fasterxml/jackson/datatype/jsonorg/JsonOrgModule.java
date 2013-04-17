@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 public class JsonOrgModule extends SimpleModule
 {
+    private static final long serialVersionUID = 1;
+
     private final static String NAME = "JsonOrgModule";
     
     /*
@@ -17,7 +19,7 @@ public class JsonOrgModule extends SimpleModule
     
     public JsonOrgModule()
     {
-        super(NAME, ModuleVersion.instance.version());
+        super(NAME, PackageVersion.VERSION);
         addDeserializer(JSONArray.class, JSONArrayDeserializer.instance);
         addDeserializer(JSONObject.class, JSONObjectDeserializer.instance);
         addSerializer(JSONArraySerializer.instance);
