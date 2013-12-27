@@ -18,6 +18,12 @@ public class SimpleWriteTest extends TestBase
         JSONTokener tok = new JSONTokener(JSON);
         JSONObject ob = (JSONObject) tok.nextValue();
         assertEquals(JSON, mapper.writeValueAsString(ob));
+
+        // And for [Issue#2], with null(s):
+        JSON = "{\"a\":null}";
+        tok = new JSONTokener(JSON);
+        ob = (JSONObject) tok.nextValue();
+        assertEquals(JSON, mapper.writeValueAsString(ob));
     }
 
     public void testWriteArray() throws Exception

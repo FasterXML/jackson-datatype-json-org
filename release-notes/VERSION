@@ -1,12 +1,14 @@
 Project: jackson-datatype-json-org
-Version: 2.3.0 (14-Nov-2013)
+Version: 2.3.1 (xx-Dec-2013)
 
-No functional changes.
+#2: Fix problem when serializing a `JSONObject` with null values
+ (reported by mpoindexter@github)
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
 
+2.3.0 (14-Nov-2013)
 2.2.3 (25-Aug-2013)
 2.2.2 (27-May-2013)
 2.2.1 (04-May-2013)

@@ -9,9 +9,7 @@ import com.fasterxml.jackson.core.*;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.*;
 
 public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
 {
@@ -54,12 +52,7 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
         Iterator<?> it = value.keys();
         while (it.hasNext()) {
             String key = (String) it.next();
-            Object ob;
-            try {
-                ob = value.opt(key);
-            } catch (JSONException e) {
-                throw new JsonGenerationException(e);
-            }
+            Object ob = value.opt(key);
             if (ob == null || ob == JSONObject.NULL) {
                 if (provider.isEnabled(SerializationFeature.WRITE_NULL_MAP_VALUES)) {
                     jgen.writeNullField(key);
