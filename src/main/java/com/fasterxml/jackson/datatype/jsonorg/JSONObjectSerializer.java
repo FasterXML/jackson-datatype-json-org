@@ -56,7 +56,7 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
             String key = (String) it.next();
             Object ob;
             try {
-                ob = value.get(key);
+                ob = value.opt(key);
             } catch (JSONException e) {
                 throw new JsonGenerationException(e);
             }
