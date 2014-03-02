@@ -1,13 +1,17 @@
 Project: jackson-datatype-json-org
-Version: 2.3.1 (28-Dec-2013)
+Version: 2.3.2 (01-Mar-2014)
 
-#1: Add `META-INF/LICENSE` in jar
-#2: Fix problem when serializing a `JSONObject` with null values
- (reported by mpoindexter@github)
+No functional changes.
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
+
+2.3.1 (28-Dec-2013)
+
+#1: Add `META-INF/LICENSE` in jar
+#2: Fix problem when serializing a `JSONObject` with null values
+ (reported by mpoindexter@github)
 
 2.3.0 (14-Nov-2013)
 2.2.3 (25-Aug-2013)
