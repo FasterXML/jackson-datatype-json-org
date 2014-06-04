@@ -4,8 +4,6 @@ Project to build Jackson (http://jackson.codehaus.org) extension module (jar) to
 
 Module is fully usable and officially released.
 
-There are versions for Jackson 1.8 and 1.9, but active development (if any) will focus on Jackson 2.x.
-
 ## Usage
 
 ### Maven dependency
@@ -16,7 +14,7 @@ To use module (version 2.x) on Maven-based projects, use following dependency:
 <dependency>
   <groupId>com.fasterxml.jackson.datatype</groupId>
   <artifactId>jackson-datatype-json-org</artifactId>
-  <version>2.1.0</version>
+  <version>2.4.0</version>
 </dependency>
 ```
 

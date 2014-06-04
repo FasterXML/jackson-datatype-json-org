@@ -1,7 +1,9 @@
 Project: jackson-datatype-json-org
-Version: 2.4.0 (xx-xxx-2014)
+Version: 2.4.0 (03-Jun-2014)
 
-No changes since 2.3.
+#6: Change org.json package dependency to use "org.apache.geronimo.bundles#json"
+    instead of one from "org.json"), to work better with OSGi.
+  (requested by laszlohordos@github)
 
 ------------------------------------------------------------------------
 === History: ===
