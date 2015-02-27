@@ -2,6 +2,8 @@ Project to build Jackson (http://jackson.codehaus.org) extension module (jar) to
 
 ## Status
 
+[![Build Status](https://travis-ci.org/FasterXML/jackson-datatype-json-org.svg)](https://travis-ci.org/FasterXML/jackson-datatype-json-org)
+
 Module is fully usable and officially released.
 
 ## Usage
