@@ -74,8 +74,6 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
                 JSONObjectSerializer.instance.serialize((JSONObject) ob, jgen, provider);
             } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
                 serialize((JSONArray) ob, jgen, provider);
-            } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
-                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
             } else {
                 provider.defaultSerializeValue(ob, jgen);
             }
