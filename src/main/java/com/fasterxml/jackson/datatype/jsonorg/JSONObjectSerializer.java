@@ -75,8 +75,6 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
                 jgen.writeBoolean(((Boolean) ob).booleanValue());
             } else  if (cls == Double.class) {
                 jgen.writeNumber(((Double) ob).doubleValue());
-            } else if (cls == JSONArray.class) {
-                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
             } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
                 serialize((JSONObject) ob, jgen, provider);
             } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
