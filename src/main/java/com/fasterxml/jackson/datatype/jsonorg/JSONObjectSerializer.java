@@ -5,7 +5,6 @@ import java.lang.reflect.Type;
 import java.util.Iterator;
 
 import com.fasterxml.jackson.core.*;
-
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
@@ -13,30 +12,36 @@ import org.json.*;
 
 public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
 {
+    private static final long serialVersionUID = 1L;
+
     public final static JSONObjectSerializer instance = new JSONObjectSerializer();
 
     public JSONObjectSerializer()
     {
         super(JSONObject.class);
     }
-    
-    @Override
-    public void serialize(JSONObject value, JsonGenerator jgen, SerializerProvider provider)
-        throws IOException, JsonGenerationException
-    {
-        jgen.writeStartObject();
-        serializeContents(value, jgen, provider);
-        jgen.writeEndObject();
+
+    @Override // since 2.6
+    public boolean isEmpty(SerializerProvider provider, JSONObject value) {
+        return (value == null) || value.length() == 0;
     }
 
     @Override
-    public void serializeWithType(JSONObject value, JsonGenerator jgen, SerializerProvider provider,
-            TypeSerializer typeSer)
-        throws IOException, JsonGenerationException
+    public void serialize(JSONObject value, JsonGenerator g, SerializerProvider provider)
+        throws IOException
     {
-        typeSer.writeTypePrefixForObject(value, jgen);
-        serializeContents(value, jgen, provider);
-        typeSer.writeTypeSuffixForObject(value, jgen);
+        g.writeStartObject();
+        serializeContents(value, g, provider);
+        g.writeEndObject();
+    }
+
+    @Override
+    public void serializeWithType(JSONObject value, JsonGenerator g, SerializerProvider provider,
+            TypeSerializer typeSer) throws IOException
+    {
+        typeSer.writeTypePrefixForObject(value, g);
+        serializeContents(value, g, provider);
+        typeSer.writeTypeSuffixForObject(value, g);
     }
 
     @Override
@@ -46,8 +51,8 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
         return createSchemaNode("object", true);
     }
     
-    protected void serializeContents(JSONObject value, JsonGenerator jgen, SerializerProvider provider)
-        throws IOException, JsonGenerationException
+    protected void serializeContents(JSONObject value, JsonGenerator g, SerializerProvider provider)
+        throws IOException
     {
         Iterator<?> it = value.keys();
         while (it.hasNext()) {
@@ -55,32 +60,32 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
             Object ob = value.opt(key);
             if (ob == null || ob == JSONObject.NULL) {
                 if (provider.isEnabled(SerializationFeature.WRITE_NULL_MAP_VALUES)) {
-                    jgen.writeNullField(key);
+                    g.writeNullField(key);
                 }
                 continue;
             }
-            jgen.writeFieldName(key);
+            g.writeFieldName(key);
             Class<?> cls = ob.getClass();
             if (cls == JSONObject.class) {
-                serialize((JSONObject) ob, jgen, provider);
+                serialize((JSONObject) ob, g, provider);
             } else if (cls == JSONArray.class) {
-                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
+                JSONArraySerializer.instance.serialize((JSONArray) ob, g, provider);
             } else  if (cls == String.class) {
-                jgen.writeString((String) ob);
+                g.writeString((String) ob);
             } else  if (cls == Integer.class) {
-                jgen.writeNumber(((Integer) ob).intValue());
+                g.writeNumber(((Integer) ob).intValue());
             } else  if (cls == Long.class) {
-                jgen.writeNumber(((Long) ob).longValue());
+                g.writeNumber(((Long) ob).longValue());
             } else  if (cls == Boolean.class) {
-                jgen.writeBoolean(((Boolean) ob).booleanValue());
+                g.writeBoolean(((Boolean) ob).booleanValue());
             } else  if (cls == Double.class) {
-                jgen.writeNumber(((Double) ob).doubleValue());
+                g.writeNumber(((Double) ob).doubleValue());
             } else if (JSONObject.class.isAssignableFrom(cls)) { // sub-class
-                serialize((JSONObject) ob, jgen, provider);
+                serialize((JSONObject) ob, g, provider);
             } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
-                JSONArraySerializer.instance.serialize((JSONArray) ob, jgen, provider);
+                JSONArraySerializer.instance.serialize((JSONArray) ob, g, provider);
             } else {
-                provider.defaultSerializeValue(ob, jgen);
+                provider.defaultSerializeValue(ob, g);
             }
         }
     }

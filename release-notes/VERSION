@@ -6,6 +6,8 @@ Project: jackson-datatype-json-org
 
 2.6.0 (not yet released)
 
+- Add `isEmpty()` method for JSONObject, JSONArray serializers (partial support)
+
 2.5.3 (24-Apr-2015)
 2.5.2 (29-Mar-2015)
 2.5.1 (06-Feb-2015)
