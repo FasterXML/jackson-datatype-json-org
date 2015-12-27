@@ -21,8 +21,8 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <version.jackson.core>2.7.0-rc2</version.jackson.core>
     <version.jackson.annotations>2.7.0-rc2</version.jackson.annotations>
+    <version.jackson.core>2.7.0-rc3-SNAPSHOT</version.jackson.core>
     <!-- Generate PackageVersion.java into this directory. -->
     <packageVersion.dir>com/fasterxml/jackson/datatype/jsonorg</packageVersion.dir>
     <packageVersion.package>${project.groupId}.jsonorg</packageVersion.package>
@@ -41,8 +41,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
       <version>${version.jackson.core}</version>
     </dependency>
 
-    <!-- 03-Jun-2014, tatu: As per [Issue#6]: include an OSGi-compatible
-       bundle for org.json package
+    <!-- 03-Jun-2014, tatu: Include an OSGi-compatible bundle for org.json package
       -->
     <dependency>
       <groupId>org.apache.geronimo.bundles</groupId>
