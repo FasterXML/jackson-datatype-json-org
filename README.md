@@ -3,6 +3,8 @@ Project to build Jackson (http://jackson.codehaus.org) extension module (jar) to
 ## Status
 
 [![Build Status](https://travis-ci.org/FasterXML/jackson-datatype-json-org.svg)](https://travis-ci.org/FasterXML/jackson-datatype-json-org)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.fasterxml.jackson.datatype/jackson-datatype-json-org/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.fasterxml.jackson.datatype/jackson-datatype-json-org/)
+[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/com.fasterxml.jackson.datatype/jackson-datatype-json-org/badge.svg)](http://www.javadoc.io/doc/com.fasterxml.jackson.datatype/jackson-datatype-json-org)
 
 Module is fully usable and officially released.
 
