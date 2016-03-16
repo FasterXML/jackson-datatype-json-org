@@ -13,7 +13,7 @@
   <description>Support for datatypes of "org.json" JSON library (see http://json.org/java),
 mainly to make it easier to upgrade code to Jackson, using automated conversions.
   </description>
-  <url>http://wiki.fasterxml.com/JacksonModuleProjects</url>
+  <url>http://github.com/FasterXML/jackson-datatype-json-org</url>    
   <scm>
     <connection>scm:git:git@github.com:FasterXML/jackson-datatype-json-org.git</connection>
     <developerConnection>scm:git:git@github.com:FasterXML/jackson-datatype-json-org.git</developerConnection>
@@ -21,7 +21,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <version.jackson.core>2.7.2</version.jackson.core>
+    <version.jackson.core>2.7.3</version.jackson.core>
     <!-- Generate PackageVersion.java into this directory. -->
     <packageVersion.dir>com/fasterxml/jackson/datatype/jsonorg</packageVersion.dir>
     <packageVersion.package>${project.groupId}.jsonorg</packageVersion.package>
