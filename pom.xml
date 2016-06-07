@@ -48,6 +48,12 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
       <version>20090211_1</version>
     </dependency>
 
+    <!--  Test Dependencies -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
