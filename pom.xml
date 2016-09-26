@@ -9,7 +9,7 @@
   <artifactId>jackson-datatype-json-org</artifactId>
   <packaging>bundle</packaging>
   <name>Jackson-datatype-json.org</name>
-  <version>2.7.8-SNAPSHOT</version>
+  <version>2.7.8</version>
   <description>Support for datatypes of "org.json" JSON library (see http://json.org/java),
 mainly to make it easier to upgrade code to Jackson, using automated conversions.
   </description>
@@ -18,7 +18,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <connection>scm:git:git@github.com:FasterXML/jackson-datatype-json-org.git</connection>
     <developerConnection>scm:git:git@github.com:FasterXML/jackson-datatype-json-org.git</developerConnection>
     <url>http://github.com/FasterXML/jackson-datatype-json-org</url>    
-    <tag>HEAD</tag>
+    <tag>jackson-datatype-json-org-2.7.8</tag>
   </scm>
   <properties>
     <version.jackson.core>2.7.8</version.jackson.core>
