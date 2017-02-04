@@ -21,7 +21,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <tag>HEAD</tag>
   </scm>
   <properties>
-    <version.jackson.core>2.7.8</version.jackson.core>
+    <version.jackson.core>2.7.9</version.jackson.core>
     <!-- Generate PackageVersion.java into this directory. -->
     <packageVersion.dir>com/fasterxml/jackson/datatype/jsonorg</packageVersion.dir>
     <packageVersion.package>${project.groupId}.jsonorg</packageVersion.package>
