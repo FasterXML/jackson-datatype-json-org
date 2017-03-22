@@ -9,7 +9,7 @@
   <artifactId>jackson-datatype-json-org</artifactId>
   <packaging>bundle</packaging>
   <name>Jackson-datatype-json.org</name>
-  <version>2.9.0.pr3-SNAPSHOT</version>
+  <version>2.9.0.pr2-SNAPSHOT</version>
   <description>Support for datatypes of "org.json" JSON library (see http://json.org/java),
 mainly to make it easier to upgrade code to Jackson, using automated conversions.
   </description>
