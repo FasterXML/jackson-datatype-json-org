@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.type.WritableTypeId;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
@@ -38,9 +39,11 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
     public void serializeWithType(JSONArray value, JsonGenerator g, SerializerProvider provider,
             TypeSerializer typeSer) throws IOException
     {
-        typeSer.writeTypePrefixForArray(value, g);
+        g.setCurrentValue(value);
+        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g,
+                typeSer.typeId(value, JsonToken.START_ARRAY));
         serializeContents(value, g, provider);
-        typeSer.writeTypeSuffixForArray(value, g);
+        typeSer.writeTypeSuffix(g, typeIdDef);
     }
 
     @Override
@@ -51,7 +54,7 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
     }
     
     protected void serializeContents(JSONArray value, JsonGenerator g, SerializerProvider provider)
-        throws IOException, JsonGenerationException
+        throws IOException
     {
         for (int i = 0, len = value.length(); i < len; ++i) {
             Object ob = value.opt(i);

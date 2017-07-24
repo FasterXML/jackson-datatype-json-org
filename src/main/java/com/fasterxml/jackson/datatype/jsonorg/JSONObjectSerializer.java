@@ -5,6 +5,7 @@ import java.lang.reflect.Type;
 import java.util.Iterator;
 
 import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.type.WritableTypeId;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
@@ -30,7 +31,7 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
     public void serialize(JSONObject value, JsonGenerator g, SerializerProvider provider)
         throws IOException
     {
-        g.writeStartObject();
+        g.writeStartObject(value);
         serializeContents(value, g, provider);
         g.writeEndObject();
     }
@@ -39,9 +40,12 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
     public void serializeWithType(JSONObject value, JsonGenerator g, SerializerProvider provider,
             TypeSerializer typeSer) throws IOException
     {
-        typeSer.writeTypePrefixForObject(value, g);
+        g.setCurrentValue(value);
+        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g,
+                typeSer.typeId(value, JsonToken.START_OBJECT));
         serializeContents(value, g, provider);
-        typeSer.writeTypeSuffixForObject(value, g);
+        typeSer.writeTypeSuffix(g, typeIdDef);
+    
     }
 
     @Override
