@@ -22,27 +22,27 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
     }
 
     @Override
-    public JSONObject deserialize(JsonParser jp, DeserializationContext ctxt)
-        throws IOException, JsonProcessingException
+    public JSONObject deserialize(JsonParser p, DeserializationContext ctxt)
+        throws IOException
     {
         JSONObject ob = new JSONObject();
-        JsonToken t = jp.getCurrentToken();
+        JsonToken t = p.getCurrentToken();
         if (t == JsonToken.START_OBJECT) {
-            t = jp.nextToken();
+            t = p.nextToken();
         }
-        for (; t == JsonToken.FIELD_NAME; t = jp.nextToken()) {
-            String fieldName = jp.getCurrentName();
-            t = jp.nextToken();
+        for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {
+            String fieldName = p.getCurrentName();
+            t = p.nextToken();
             try {
                 switch (t) {
                 case START_ARRAY:
-                    ob.put(fieldName, JSONArrayDeserializer.instance.deserialize(jp, ctxt));
+                    ob.put(fieldName, JSONArrayDeserializer.instance.deserialize(p, ctxt));
                     continue;
                 case START_OBJECT:
-                    ob.put(fieldName, deserialize(jp, ctxt));
+                    ob.put(fieldName, deserialize(p, ctxt));
                     continue;
                 case VALUE_STRING:
-                    ob.put(fieldName, jp.getText());
+                    ob.put(fieldName, p.getText());
                     continue;
                 case VALUE_NULL:
                     ob.put(fieldName, JSONObject.NULL);
@@ -54,21 +54,21 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
                     ob.put(fieldName, Boolean.FALSE);
                     continue;
                 case VALUE_NUMBER_INT:
-                    ob.put(fieldName, jp.getNumberValue());
+                    ob.put(fieldName, p.getNumberValue());
                     continue;
                 case VALUE_NUMBER_FLOAT:
-                    ob.put(fieldName, jp.getNumberValue());
+                    ob.put(fieldName, p.getNumberValue());
                     continue;
                 case VALUE_EMBEDDED_OBJECT:
-                    ob.put(fieldName, jp.getEmbeddedObject());
+                    ob.put(fieldName, p.getEmbeddedObject());
                     continue;
                 default:
                 }
             } catch (JSONException e) {
                 throw ctxt.mappingException("Failed to construct JSONObject: "+e.getMessage());
             }
-            throw ctxt.mappingException("Urecognized or unsupported JsonToken type: "+t);
+            return (JSONObject) ctxt.handleUnexpectedToken(JSONObject.class, p);
         }
         return ob;
-    }    
+    }
 }
