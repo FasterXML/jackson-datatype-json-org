@@ -18,7 +18,7 @@ To use module (version 2.x) on Maven-based projects, use following dependency:
 <dependency>
   <groupId>com.fasterxml.jackson.datatype</groupId>
   <artifactId>jackson-datatype-json-org</artifactId>
-  <version>2.4.0</version>
+  <version>2.9.0</version>
 </dependency>
 ```
 
