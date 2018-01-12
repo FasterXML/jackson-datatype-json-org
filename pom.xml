@@ -37,12 +37,13 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
       <artifactId>jackson-databind</artifactId>
     </dependency>
 
-    <!-- 03-Jun-2014, tatu: Include an OSGi-compatible bundle for org.json package
+    <!-- 11-Jan-2018, tatu: Change from `org.apache.geronimo.bundles`/`json`/20090211_1
+             to more up-to-date, less funky version (as per #12
       -->
     <dependency>
-      <groupId>org.apache.geronimo.bundles</groupId>
+      <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20090211_1</version>
+      <version>20171018</version>
     </dependency>
 
     <!--  Test Dependencies -->
