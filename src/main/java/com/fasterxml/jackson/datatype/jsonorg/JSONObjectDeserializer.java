@@ -65,7 +65,7 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
                 default:
                 }
             } catch (JSONException e) {
-                throw ctxt.mappingException("Failed to construct JSONObject: "+e.getMessage());
+                throw ctxt.instantiationException(handledType(), e);
             }
             return (JSONObject) ctxt.handleUnexpectedToken(JSONObject.class, p);
         }

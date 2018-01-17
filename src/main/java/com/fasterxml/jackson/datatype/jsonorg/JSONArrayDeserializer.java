@@ -22,21 +22,21 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
     }
     
     @Override
-    public JSONArray deserialize(JsonParser jp, DeserializationContext ctxt)
-        throws IOException, JsonProcessingException
+    public JSONArray deserialize(JsonParser p, DeserializationContext ctxt)
+        throws IOException
     {
         JSONArray array = new JSONArray();
         JsonToken t;
-        while ((t = jp.nextToken()) != JsonToken.END_ARRAY) {
+        while ((t = p.nextToken()) != JsonToken.END_ARRAY) {
             switch (t) {
             case START_ARRAY:
-                array.put(deserialize(jp, ctxt));
+                array.put(deserialize(p, ctxt));
                 continue;
             case START_OBJECT:
-                array.put(JSONObjectDeserializer.instance.deserialize(jp, ctxt));
+                array.put(JSONObjectDeserializer.instance.deserialize(p, ctxt));
                 continue;
             case VALUE_STRING:
-                array.put(jp.getText());
+                array.put(p.getText());
                 continue;
             case VALUE_NULL:
                 array.put(JSONObject.NULL);
@@ -48,16 +48,16 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
                 array.put(Boolean.FALSE);
                 continue;
             case VALUE_NUMBER_INT:
-                array.put(jp.getNumberValue());
+                array.put(p.getNumberValue());
                 continue;
             case VALUE_NUMBER_FLOAT:
-                array.put(jp.getNumberValue());
+                array.put(p.getNumberValue());
                 continue;
             case VALUE_EMBEDDED_OBJECT:
-                array.put(jp.getEmbeddedObject());
+                array.put(p.getEmbeddedObject());
                 continue;
             default:
-                throw ctxt.mappingException("Unrecognized or unsupported JsonToken type: "+t);
+                return (JSONArray) ctxt.handleUnexpectedToken(handledType(), p);
             }
         }
         return array;
