@@ -4,7 +4,7 @@ Project: jackson-datatype-json-org
 === Releases ===
 ------------------------------------------------------------------------
 
-2.9.4 (not yet released)
+2.9.4 (24-Jan-2018)
 
 #12: Change `json-20090211_1` dependency to work on Java 9
 
