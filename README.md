@@ -1,4 +1,4 @@
-Project to build [Jackson](http://jackson.codehaus.org) extension module (jar) to support datatypes of ["json org" JSON library](http://json.org/java)
+Project to build [Jackson](https://github.com/FasterXML/jackson) extension module (jar) to support datatypes of ["json org" JSON library](http://json.org/java)
 
 ## Status
 
