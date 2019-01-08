@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.*;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.util.ClassUtil;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,6 +26,14 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
     public JSONArray deserialize(JsonParser p, DeserializationContext ctxt)
         throws IOException
     {
+        // 07-Jan-2019, tatu: As per [datatype-json-org#15], need to verify it's an Array
+        if (!p.isExpectedStartArrayToken()) {
+            final JsonToken t = p.currentToken();
+            return (JSONArray) ctxt.handleUnexpectedToken(handledType(), t, p,
+                    "Unexpected token (%s), expected START_ARRAY for %s value",
+                    t, ClassUtil.nameOf(handledType()));
+        }
+        
         JSONArray array = new JSONArray();
         JsonToken t;
         while ((t = p.nextToken()) != JsonToken.END_ARRAY) {

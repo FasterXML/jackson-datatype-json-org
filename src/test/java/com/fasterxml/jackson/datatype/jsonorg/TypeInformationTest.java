@@ -10,7 +10,7 @@ import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
  * Tests to verify that we can also use JSONObject and JSONArray
  * with polymorphic type information.
  */
-public class TypeInformationTest extends TestBase
+public class TypeInformationTest extends ModuleTestBase
 {
     static class ObjectWrapper {
         public Object value;

@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.*;
 
 import org.json.*;
 
-import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
-
-public class SimpleWriteTest extends TestBase
+public class SimpleWriteTest extends ModuleTestBase
 {
     public void testWriteObject() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
+        final ObjectMapper mapper = newMapper();
 
         // Ok: let's create JSONObject from JSON text
         String JSON = "{\"a\":{\"b\":3}}";
@@ -28,8 +25,7 @@ public class SimpleWriteTest extends TestBase
 
     public void testWriteArray() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
+        final ObjectMapper mapper = newMapper();
 
         // Ok: let's create JSONObject from JSON text
         String JSON = "[1,true,\"text\",[null,3],{\"a\":[1.25]}]";

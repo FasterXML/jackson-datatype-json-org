@@ -6,7 +6,7 @@ import org.json.*;
 
 import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
-public class SimpleReadTest extends TestBase
+public class SimpleReadTest extends ModuleTestBase
 {
     public void testReadObject() throws Exception
     {
