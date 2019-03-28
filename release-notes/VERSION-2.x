@@ -4,6 +4,11 @@ Project: jackson-datatype-json-org
 === Releases ===
 ------------------------------------------------------------------------
 
+2.10.0 (not yet released)
+
+- Add JDK9+ module-info using Moditect plugin
+- Update `org.json` dependency to version `20180813`
+
 2.9.9 (not yet released)
 
 #15: Misleading exception when trying to deserialize JSON String as `org.json.JSONArray` value
