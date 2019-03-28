@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -46,13 +45,6 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
         typeSer.writeTypeSuffix(g, typeIdDef);
     }
 
-    @Override
-    public JsonNode getSchema(SerializerProvider provider, Type typeHint)
-        throws JsonMappingException
-    {
-        return createSchemaNode("array", true);
-    }
-    
     protected void serializeContents(JSONArray value, JsonGenerator g, SerializerProvider provider)
         throws IOException
     {
@@ -82,7 +74,7 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
             } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
                 serialize((JSONArray) ob, g, provider);
             } else {
-                provider.defaultSerializeValue(ob, g);
+                provider.writeValue(g, ob);
             }
         }        
     }

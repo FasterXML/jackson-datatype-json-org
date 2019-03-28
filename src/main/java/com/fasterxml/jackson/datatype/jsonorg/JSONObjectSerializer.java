@@ -48,13 +48,6 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
     
     }
 
-    @Override
-    public JsonNode getSchema(SerializerProvider provider, Type typeHint)
-        throws JsonMappingException
-    {
-        return createSchemaNode("object", true);
-    }
-    
     protected void serializeContents(JSONObject value, JsonGenerator g, SerializerProvider provider)
         throws IOException
     {
@@ -89,7 +82,7 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
             } else if (JSONArray.class.isAssignableFrom(cls)) { // sub-class
                 JSONArraySerializer.instance.serialize((JSONArray) ob, g, provider);
             } else {
-                provider.defaultSerializeValue(ob, g);
+                provider.writeValue(g, ob);
             }
         }
     }
