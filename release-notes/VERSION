@@ -4,6 +4,10 @@ Project: jackson-datatype-json-org
 === Releases ===
 ------------------------------------------------------------------------
 
+2.9.9 (not yet released)
+
+#15: Misleading exception when trying to deserialize JSON String as `org.json.JSONArray` value
+
 2.9.8 (15-Dec-2018)
 2.9.7 (19-Sep-2018)
 2.9.6 (12-Jun-2018)
