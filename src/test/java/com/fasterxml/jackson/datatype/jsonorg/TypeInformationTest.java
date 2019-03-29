@@ -4,8 +4,6 @@ import com.fasterxml.jackson.databind.*;
 
 import org.json.*;
 
-import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
-
 /**
  * Tests to verify that we can also use JSONObject and JSONArray
  * with polymorphic type information.
@@ -21,9 +19,9 @@ public class TypeInformationTest extends ModuleTestBase
     
     public void testWrappedArray() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
-        mapper.enableDefaultTyping();
+        ObjectMapper mapper = newMapperBuilder()
+                .enableDefaultTyping()
+                .build();
         JSONTokener tok = new JSONTokener("[13]");
         JSONArray array = (JSONArray) tok.nextValue();
 
@@ -39,9 +37,9 @@ public class TypeInformationTest extends ModuleTestBase
 
     public void testWrappedObject() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
-        mapper.enableDefaultTyping();
+        ObjectMapper mapper = newMapperBuilder()
+                .enableDefaultTyping()
+                .build();
         JSONTokener tok = new JSONTokener("{\"a\":true}");
         JSONObject array = (JSONObject) tok.nextValue();
 

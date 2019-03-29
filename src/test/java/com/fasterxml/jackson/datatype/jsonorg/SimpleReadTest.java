@@ -4,14 +4,11 @@ import com.fasterxml.jackson.databind.*;
 
 import org.json.*;
 
-import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
-
 public class SimpleReadTest extends ModuleTestBase
 {
     public void testReadObject() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
+        final ObjectMapper mapper = newMapper();
 
         JSONObject ob = mapper.readValue("{\"a\":{\"b\":3}, \"c\":[9, -4], \"d\":null, \"e\":true}",
                 JSONObject.class);
@@ -29,8 +26,7 @@ public class SimpleReadTest extends ModuleTestBase
 
     public void testReadArray() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
+        final ObjectMapper mapper = newMapper();
 
         JSONArray array = mapper.readValue("[null, 13, false, 1.25, \"abc\", {\"a\":13}, [ ] ]",
                 JSONArray.class);
