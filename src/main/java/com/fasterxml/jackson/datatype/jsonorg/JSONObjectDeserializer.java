@@ -26,12 +26,12 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
         throws IOException
     {
         JSONObject ob = new JSONObject();
-        JsonToken t = p.getCurrentToken();
+        JsonToken t = p.currentToken();
         if (t == JsonToken.START_OBJECT) {
             t = p.nextToken();
         }
         for (; t == JsonToken.FIELD_NAME; t = p.nextToken()) {
-            String fieldName = p.getCurrentName();
+            String fieldName = p.currentName();
             t = p.nextToken();
             try {
                 switch (t) {

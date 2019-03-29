@@ -1,7 +1,6 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.Iterator;
 
 import com.fasterxml.jackson.core.*;
@@ -56,9 +55,8 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
             String key = (String) it.next();
             Object ob = value.opt(key);
             if (ob == null || ob == JSONObject.NULL) {
-                if (provider.isEnabled(SerializationFeature.WRITE_NULL_MAP_VALUES)) {
-                    g.writeNullField(key);
-                }
+                // 28-Mar-2019, tatu: Should possibly support filter of empty/null/default values?
+                g.writeNullField(key);
                 continue;
             }
             g.writeFieldName(key);
