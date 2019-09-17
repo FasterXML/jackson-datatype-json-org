@@ -20,7 +20,7 @@ public class TypeInformationTest extends ModuleTestBase
     public void testWrappedArray() throws Exception
     {
         ObjectMapper mapper = newMapperBuilder()
-                .enableDefaultTyping(new NoCheckSubTypeValidator())
+                .activateDefaultTyping(new NoCheckSubTypeValidator())
                 .build();
         JSONTokener tok = new JSONTokener("[13]");
         JSONArray array = (JSONArray) tok.nextValue();
@@ -38,7 +38,7 @@ public class TypeInformationTest extends ModuleTestBase
     public void testWrappedObject() throws Exception
     {
         ObjectMapper mapper = newMapperBuilder()
-                .enableDefaultTyping(new NoCheckSubTypeValidator())
+                .activateDefaultTyping(new NoCheckSubTypeValidator())
                 .build();
         JSONTokener tok = new JSONTokener("{\"a\":true}");
         JSONObject array = (JSONObject) tok.nextValue();

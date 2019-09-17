@@ -12,8 +12,6 @@ import org.json.JSONObject;
 
 public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
 {
-    private static final long serialVersionUID = 1L;
-
     public final static JSONObjectDeserializer instance = new JSONObjectDeserializer();
 
     public JSONObjectDeserializer()
@@ -67,7 +65,7 @@ public class JSONObjectDeserializer extends StdDeserializer<JSONObject>
             } catch (JSONException e) {
                 throw ctxt.instantiationException(handledType(), e);
             }
-            return (JSONObject) ctxt.handleUnexpectedToken(JSONObject.class, p);
+            return (JSONObject) ctxt.handleUnexpectedToken(getValueType(ctxt), p);
         }
         return ob;
     }

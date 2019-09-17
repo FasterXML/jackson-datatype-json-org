@@ -13,8 +13,6 @@ import org.json.JSONObject;
 
 public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
 {
-    private static final long serialVersionUID = 1L;
-
     public final static JSONArrayDeserializer instance = new JSONArrayDeserializer();
 
     public JSONArrayDeserializer()
@@ -29,7 +27,7 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
         // 07-Jan-2019, tatu: As per [datatype-json-org#15], need to verify it's an Array
         if (!p.isExpectedStartArrayToken()) {
             final JsonToken t = p.currentToken();
-            return (JSONArray) ctxt.handleUnexpectedToken(handledType(), t, p,
+            return (JSONArray) ctxt.handleUnexpectedToken(getValueType(ctxt), t, p,
                     "Unexpected token (%s), expected START_ARRAY for %s value",
                     t, ClassUtil.nameOf(handledType()));
         }
@@ -66,7 +64,7 @@ public class JSONArrayDeserializer extends StdDeserializer<JSONArray>
                 array.put(p.getEmbeddedObject());
                 continue;
             default:
-                return (JSONArray) ctxt.handleUnexpectedToken(handledType(), p);
+                return (JSONArray) ctxt.handleUnexpectedToken(getValueType(ctxt), p);
             }
         }
         return array;
