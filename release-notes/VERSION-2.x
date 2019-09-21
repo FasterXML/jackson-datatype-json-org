@@ -11,6 +11,10 @@ Project: jackson-datatype-json-org
 - Add JDK9+ module-info using Moditect plugin
 - Update `org.json` dependency to version `20180813`
 
+2.9.10 (21-Sep-2019)
+
+No changes since 2.9.9
+
 2.9.9 (16-May-2019)
 
 #15: Misleading exception when trying to deserialize JSON String as `org.json.JSONArray` value
