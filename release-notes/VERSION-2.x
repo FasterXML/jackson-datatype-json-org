@@ -4,9 +4,7 @@ Project: jackson-datatype-json-org
 === Releases ===
 ------------------------------------------------------------------------
 
-2.10.0.pr3 (17-Sep-2019)
-2.10.0.pr2 (31-Aug-2019)
-2.10.0.pr1 (19-Jul-2019)
+2.10.0 (26-Sep-2019)
 
 - Add JDK9+ module-info using Moditect plugin
 - Update `org.json` dependency to version `20180813`
