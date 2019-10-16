@@ -12,8 +12,6 @@ import org.json.*;
 
 public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
 {
-    private static final long serialVersionUID = 1L;
-
     public final static JSONObjectSerializer instance = new JSONObjectSerializer();
 
     public JSONObjectSerializer()
@@ -36,14 +34,14 @@ public class JSONObjectSerializer extends JSONBaseSerializer<JSONObject>
     }
 
     @Override
-    public void serializeWithType(JSONObject value, JsonGenerator g, SerializerProvider provider,
+    public void serializeWithType(JSONObject value, JsonGenerator g, SerializerProvider ctxt,
             TypeSerializer typeSer) throws IOException
     {
         g.setCurrentValue(value);
-        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g,
+        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g, ctxt,
                 typeSer.typeId(value, JsonToken.START_OBJECT));
-        serializeContents(value, g, provider);
-        typeSer.writeTypeSuffix(g, typeIdDef);
+        serializeContents(value, g, ctxt);
+        typeSer.writeTypeSuffix(g, ctxt, typeIdDef);
     
     }
 

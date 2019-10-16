@@ -12,8 +12,6 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 
 public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
 {
-    private static final long serialVersionUID = 1L;
-
     public final static JSONArraySerializer instance = new JSONArraySerializer();
 
     public JSONArraySerializer()
@@ -35,14 +33,14 @@ public class JSONArraySerializer extends JSONBaseSerializer<JSONArray>
     }
 
     @Override
-    public void serializeWithType(JSONArray value, JsonGenerator g, SerializerProvider provider,
+    public void serializeWithType(JSONArray value, JsonGenerator g, SerializerProvider ctxt,
             TypeSerializer typeSer) throws IOException
     {
         g.setCurrentValue(value);
-        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g,
+        WritableTypeId typeIdDef = typeSer.writeTypePrefix(g, ctxt,
                 typeSer.typeId(value, JsonToken.START_ARRAY));
-        serializeContents(value, g, provider);
-        typeSer.writeTypeSuffix(g, typeIdDef);
+        serializeContents(value, g, ctxt);
+        typeSer.writeTypeSuffix(g, ctxt, typeIdDef);
     }
 
     protected void serializeContents(JSONArray value, JsonGenerator g, SerializerProvider provider)
