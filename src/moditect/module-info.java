@@ -4,7 +4,9 @@ module com.fasterxml.jackson.datatype.jsonorg {
     requires com.fasterxml.jackson.databind;
 
     // is this the package name
-    requires json;
+    requires static json;
+    //^2015
+	requires static org.json;
 
     exports com.fasterxml.jackson.datatype.jsonorg;
 
