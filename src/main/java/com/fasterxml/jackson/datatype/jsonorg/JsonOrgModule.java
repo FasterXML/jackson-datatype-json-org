@@ -10,13 +10,13 @@ public class JsonOrgModule extends SimpleModule
     private static final long serialVersionUID = 1;
 
     private final static String NAME = "JsonOrgModule";
-    
+
     /*
     /**********************************************************
     /* Life-cycle
     /**********************************************************
      */
-    
+
     public JsonOrgModule()
     {
         super(NAME, PackageVersion.VERSION);

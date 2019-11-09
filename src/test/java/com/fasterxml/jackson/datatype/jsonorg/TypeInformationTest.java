@@ -17,18 +17,19 @@ public class TypeInformationTest extends ModuleTestBase
         public ObjectWrapper() { }
     }
 
+    private final ObjectMapper POLY_MAPPER = newMapperBuilder()
+            .activateDefaultTyping(new NoCheckSubTypeValidator())
+            .build();
+    
     public void testWrappedArray() throws Exception
     {
-        ObjectMapper mapper = newMapperBuilder()
-                .activateDefaultTyping(new NoCheckSubTypeValidator())
-                .build();
         JSONTokener tok = new JSONTokener("[13]");
         JSONArray array = (JSONArray) tok.nextValue();
 
-        String json = mapper.writeValueAsString(new ObjectWrapper(array));
+        String json = POLY_MAPPER.writeValueAsString(new ObjectWrapper(array));
         assertEquals("{\"value\":[\"org.json.JSONArray\",[13]]}", json);
 
-        ObjectWrapper result = mapper.readValue(json, ObjectWrapper.class);
+        ObjectWrapper result = POLY_MAPPER.readValue(json, ObjectWrapper.class);
         assertEquals(JSONArray.class, result.value.getClass());
         JSONArray resultArray = (JSONArray) result.value;
         assertEquals(1, resultArray.length());
@@ -37,16 +38,13 @@ public class TypeInformationTest extends ModuleTestBase
 
     public void testWrappedObject() throws Exception
     {
-        ObjectMapper mapper = newMapperBuilder()
-                .activateDefaultTyping(new NoCheckSubTypeValidator())
-                .build();
         JSONTokener tok = new JSONTokener("{\"a\":true}");
         JSONObject array = (JSONObject) tok.nextValue();
 
-        String json = mapper.writeValueAsString(new ObjectWrapper(array));
+        String json = POLY_MAPPER.writeValueAsString(new ObjectWrapper(array));
         assertEquals("{\"value\":[\"org.json.JSONObject\",{\"a\":true}]}", json);
 
-        ObjectWrapper result = mapper.readValue(json, ObjectWrapper.class);
+        ObjectWrapper result = POLY_MAPPER.readValue(json, ObjectWrapper.class);
         assertEquals(JSONObject.class, result.value.getClass());
         JSONObject resultOb = (JSONObject) result.value;
         assertEquals(1, resultOb.length());
