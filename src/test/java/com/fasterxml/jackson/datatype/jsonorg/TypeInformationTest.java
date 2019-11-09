@@ -1,10 +1,10 @@
 package com.fasterxml.jackson.datatype.jsonorg;
 
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.cfg.MapperConfig;
+import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
 
 import org.json.*;
-
-import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
 
 /**
  * Tests to verify that we can also use JSONObject and JSONArray
@@ -12,25 +12,39 @@ import com.fasterxml.jackson.datatype.jsonorg.JsonOrgModule;
  */
 public class TypeInformationTest extends ModuleTestBase
 {
+    static class NoCheckSubTypeValidator
+        extends PolymorphicTypeValidator.Base
+    {
+        private static final long serialVersionUID = 1L;
+    
+        public final static NoCheckSubTypeValidator instance = new NoCheckSubTypeValidator(); 
+    
+        @Override
+        public Validity validateBaseType(MapperConfig<?> config, JavaType baseType) {
+            return Validity.ALLOWED;
+        }
+    }    
+
     static class ObjectWrapper {
         public Object value;
 
         public ObjectWrapper(Object v) { value = v; }
         public ObjectWrapper() { }
     }
+
+    private final ObjectMapper POLY_MAPPER = newMapperBuilder()
+            .activateDefaultTyping(new NoCheckSubTypeValidator())
+            .build();
     
     public void testWrappedArray() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
-        mapper.enableDefaultTyping();
         JSONTokener tok = new JSONTokener("[13]");
         JSONArray array = (JSONArray) tok.nextValue();
 
-        String json = mapper.writeValueAsString(new ObjectWrapper(array));
+        String json = POLY_MAPPER.writeValueAsString(new ObjectWrapper(array));
         assertEquals("{\"value\":[\"org.json.JSONArray\",[13]]}", json);
 
-        ObjectWrapper result = mapper.readValue(json, ObjectWrapper.class);
+        ObjectWrapper result = POLY_MAPPER.readValue(json, ObjectWrapper.class);
         assertEquals(JSONArray.class, result.value.getClass());
         JSONArray resultArray = (JSONArray) result.value;
         assertEquals(1, resultArray.length());
@@ -39,16 +53,13 @@ public class TypeInformationTest extends ModuleTestBase
 
     public void testWrappedObject() throws Exception
     {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new JsonOrgModule());
-        mapper.enableDefaultTyping();
         JSONTokener tok = new JSONTokener("{\"a\":true}");
         JSONObject array = (JSONObject) tok.nextValue();
 
-        String json = mapper.writeValueAsString(new ObjectWrapper(array));
+        String json = POLY_MAPPER.writeValueAsString(new ObjectWrapper(array));
         assertEquals("{\"value\":[\"org.json.JSONObject\",{\"a\":true}]}", json);
 
-        ObjectWrapper result = mapper.readValue(json, ObjectWrapper.class);
+        ObjectWrapper result = POLY_MAPPER.readValue(json, ObjectWrapper.class);
         assertEquals(JSONObject.class, result.value.getClass());
         JSONObject resultOb = (JSONObject) result.value;
         assertEquals(1, resultOb.length());
