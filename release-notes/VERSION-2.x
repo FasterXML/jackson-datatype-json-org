@@ -8,7 +8,9 @@ Project: jackson-datatype-json-org
 
 -
 
-2.10.2 (05-Jan-2020)2.10.1 (09-Nov-2019)
+2.10.3 (03-Mar-2020)
+2.10.2 (05-Jan-2020)
+2.10.1 (09-Nov-2019)
 
 No changes since 2.10.0
 
