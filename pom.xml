@@ -40,7 +40,7 @@ mainly to make it easier to upgrade code to Jackson, using automated conversions
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20180813</version>
+      <version>20230227</version>
     </dependency>
   </dependencies>
 
